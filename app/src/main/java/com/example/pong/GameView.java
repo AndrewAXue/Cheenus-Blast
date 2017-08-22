@@ -39,7 +39,8 @@ public class GameView extends SurfaceView implements Runnable {
     int height;
     int width;
     double bounce_mult = 1.008;
-    double gravity = 0.05;
+    double gravity = 0.15;
+    double dx_on_side = 2.5;
 
     boolean init_pause = true;
 
@@ -110,14 +111,14 @@ public class GameView extends SurfaceView implements Runnable {
                         if (percent<0.1){
                             percent = 0.1;
                         }
-                        ball.dx-=percent*1;
+                        ball.dx-=percent*dx_on_side;
                     }
                     else{
                         percent = ((ball.getX()+ball.getleng()/2)-(player.getX()+player.getleng()/2))/(double)(player.getleng()/2);
                         if (percent<0.1){
                             percent = 0.1;
                         }
-                        ball.dx+=percent*1;
+                        ball.dx+=percent*dx_on_side;
                     }
                 }
                 if (ball.getdy()+ball.getY()+ball.getleng()>=height){
@@ -176,7 +177,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private void control() {
         try {
-            gameThread.sleep(17);
+            gameThread.sleep(12);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
